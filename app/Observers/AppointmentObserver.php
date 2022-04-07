@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Jobs\SendAppointmentCreatedEmailJob;
 use App\Mail\AppointmentCreatedEmail;
 use App\Models\Appointment;
 use Illuminate\Support\Facades\Mail;
@@ -16,8 +17,7 @@ class AppointmentObserver
      */
     public function created(Appointment $appointment)
     {
-        Mail::to($appointment->email)->send(new AppointmentCreatedEmail());
-        Mail::to('secretary@mail.com')->send(new AppointmentCreatedEmail());
-        Mail::to('lawyer@mail.com')->send(new AppointmentCreatedEmail());
+        //In real scenario notifications for app users would be used
+        dispatch(new SendAppointmentCreatedEmailJob($appointment));
     }
 }
