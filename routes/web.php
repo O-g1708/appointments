@@ -21,3 +21,8 @@ Route::get('/', function () {
 Route::resource('appointment', AppointmentController::class)->only([
     'create', 'store'
 ]);
+
+Route::get('/email', function () {
+
+    return new \App\Mail\AppointmentCreatedEmail();
+});
