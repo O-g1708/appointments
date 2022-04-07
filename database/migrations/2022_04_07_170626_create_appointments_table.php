@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->dateTime('time');
             $table->string('email');
+            $table->tinyInteger('notified')->default(0);
             $table->timestamps();
         });
     }
